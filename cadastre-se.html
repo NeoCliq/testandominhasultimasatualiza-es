@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="login.css" />
+    <script src="cadastre-se.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img src="../../1 Front-end/pages/imagens/logo.png" alt="Logo" />
+      </div>
+      <form id="signup-form">
+        <!-- Primeiro Nome -->
+        <div class="input-group">
+          <label for="name">Primeiro Nome</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Primeiro nome"
+            required />
+        </div>
+
+        <!-- Sobrenome -->
+        <div class="input-group">
+          <label for="surname">Sobrenome</label>
+          <input
+            type="text"
+            id="surname"
+            name="surname"
+            placeholder="Sobrenome"
+            required />
+        </div>
+
+        <!-- E-mail -->
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            required />
+        </div>
+
+        <!-- Senha -->
+        <div class="input-group">
+          <label for="password">Senha</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Senha"
+            required
+            autocomplete="new-password" />
+        </div>
+
+        <!-- Confirmar Senha -->
+        <div class="input-group">
+          <label for="confirm_password">Confirme a Senha</label>
+          <input
+            type="password"
+            id="confirm_password"
+            name="confirm_password"
+            placeholder="Confirme a Senha"
+            required
+            autocomplete="new-password" />
+        </div>
+
+        <button type="submit">Cadastrar</button>
+      </form>
+
+      <div class="links">
+        <p>
+          <b>É uma empresa?</b> <a href="cadastroempresa.html">Faça parte</a>
+        </p>
+        <p>Já tem uma conta? <a href="login.html">Login</a></p>
+      </div>
+    </div>
+  </body>
+</html>

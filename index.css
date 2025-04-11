@@ -1,0 +1,298 @@
+/* Resetando margens e preenchimentos de todos os elementos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+}
+
+/* Corpo */
+body {
+  font-family: Arial, sans-serif;
+  width: 100vw; /* Ajuste para 100% da largura da tela */
+  overflow-x: hidden;
+}
+
+/* Estilos para o cabeçalho */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 45px 70px;
+  width: 100%;
+  flex-wrap: wrap; /* Permite que os elementos se ajustem no mobile */
+  box-sizing: border-box; /* Garante que o padding não ultrapasse o tamanho da tela */
+}
+
+/* Logo à esquerda */
+.logo a {
+  font-size: 35px;
+  text-decoration: none;
+  color: #000;
+}
+
+.neo {
+  color: #000;
+}
+
+.cliq {
+  color: #ff6a13;
+}
+
+/* Texto abaixo do logo */
+.logo-text {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Links de navegação à direita */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #000;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* Estilos para o ícone da lupa */
+.search-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Estilo para o botão "Cadastre-se" */
+.signup-btn {
+  background-color: #ff6a13;
+  color: #ffff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+}
+
+.signup-btn:hover {
+  background-color: #ff5a00;
+}
+
+/* Estilos para o botão "Entrar" abaixo do cabeçalho */
+.login-btn-container {
+  padding-left: 70px;
+  margin-top: -30px;
+}
+
+.login-btn {
+  background-color: #000;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+}
+
+.login-btn:hover {
+  background-color: #333;
+}
+
+/* Frase marketing */
+.textomarketing {
+  font-size: 25px;
+  color: #4e4e4e;
+  display: flex;
+  align-items: center;
+  padding-left: 65px;
+  padding-top: 75px;
+  flex-wrap: wrap; /* Permite que o texto e imagem se ajustem no mobile */
+}
+
+.imagem {
+  display: flex;
+  justify-content: center; /* Centraliza a imagem */
+  margin-top: 20px;
+  margin-left: 0; /* Remove a margem para que a imagem se ajuste no mobile */
+}
+
+.minha-imagem {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  object-fit: contain;
+  position: relative;
+  top: 0;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+/* Estilos para a seção de botões (carrossel) */
+.button-section {
+  margin-top: 40px;
+  padding-left: 3px;
+  padding-right: 100px;
+}
+
+.carousel-container {
+  overflow: hidden;
+  width: 100vw;
+  white-space: nowrap;
+}
+
+.buttons-container {
+  display: inline-block;
+  gap: 20px;
+  white-space: nowrap;
+  animation: moveCarrossel 60s linear infinite;
+  width: 100vw;
+  max-width: 100vw;
+}
+
+.btn {
+  background-color: #dddddd;
+  color: #000000;
+  padding: 130px 110px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  max-width: 100vw; /* Ajuste para garantir que os botões não ultrapassem a tela */
+}
+
+.btn:hover {
+  background-color: #9c9c9c;
+}
+
+/* Novo carrossel com fundo preto */
+.second-carousel {
+  background-color: #000;
+  padding: 150px 0;
+  width: 100vw;
+  gap: 10px;
+  position: relative;
+  top: 150px;
+}
+
+.carousel-text {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+/* Estilos para os botões do segundo carrossel */
+.second-carousel .buttons-container .btn {
+  background: linear-gradient(to bottom, #000 0%, #fff 100%);
+  color: #000;
+  padding: 180px 50px; /* Ajuste do padding */
+  max-width: calc(100vw / 6);
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.second-carousel .buttons-container .btn:hover {
+  background: linear-gradient(to bottom, #333 0%, #e6e6e6 100%);
+}
+
+.terceiro-carousel {
+  background-color: #ff6a13;
+  padding: 200px 0;
+  width: 100vw;
+  gap: 3px;
+  margin-top: -5px;
+}
+
+.terceiro-carousel .buttons-container .btn {
+  background-color: #fff;
+  color: #ff6a13 !important;
+  padding: 300px 400px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .header {
+    padding: 15px 15px;
+    flex-direction: column;
+    align-items: center; /* Centraliza os elementos do cabeçalho no mobile */
+  }
+
+  .logo a {
+    font-size: 30px;
+  }
+
+  .textomarketing {
+    font-size: 18px;
+    padding-left: 10px; /* Ajuste no padding */
+    text-align: center; /* Centraliza o texto */
+    padding-top: 50px; /* Ajusta o espaço superior */
+  }
+
+  .imagem {
+    margin-left: 0;
+    margin-top: 20px;
+    justify-content: center;
+  }
+
+  .minha-imagem {
+    max-width: 80%; /* Ajusta a imagem para não ultrapassar os limites da tela */
+    width: 100%;
+    height: auto;
+    top: 0;
+    position: relative;
+  }
+
+  .buttons-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 80%; /* Ajuste da largura para os botões */
+    margin-bottom: 15px;
+    padding: 100px 60px;
+  }
+
+  .second-carousel .buttons-container .btn {
+    max-width: calc(100vw / 3); /* Ajuste da largura do botão no carrossel */
+    padding: 150px 50px; /* Ajuste no tamanho do botão */
+  }
+
+  .terceiro-carousel .buttons-container .btn {
+    max-width: calc(
+      100vw / 2
+    ); /* Ajuste da largura para os botões no terceiro carrossel */
+    padding: 150px 200px; /* Ajuste no tamanho do botão */
+  }
+}
+
+/* Animação para o carrossel */
+@keyframes moveCarrossel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout com Camadas</title>
+    <link rel="stylesheet" href="perfil.css" />
+    <script type="module" src="perfil.js"></script>
+    <script>
+      // Certifique-se de que o Supabase esteja acessível para o seu código JS
+      const supabase = window.supabase || {}; // Use a instância do supabase se ela estiver disponível globalmente
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
+  </head>
+  <body>
+    <div class="bloco-preto"></div>
+    <div class="bloco-branco"></div>
+    <div class="foto-circulo" id="foto-circulo"></div>
+    <!-- Círculo para foto clicável -->
+
+    <!-- Seta para voltar -->
+    <a href="javascript:history.back()">
+      <img
+        src="../pages/icones/voltar-seta.svg"
+        alt="Voltar"
+        class="voltar-seta" />
+    </a>
+
+    <!-- Texto Olá abaixo da seta -->
+    <div class="texto-ola">Olá, <span id="nome-usuario">Usuário</span></div>
+
+    <!-- Área de textos abaixo do círculo -->
+    <div class="area-textos">
+      <div class="texto-item" id="informacoes-pessoais">
+        <img
+          src="../pages/icones/perfil-configuracoes.svg"
+          alt="Ícone Perfil" />
+        Informações Pessoais
+      </div>
+      <div class="texto-item">
+        <img
+          src="../pages/icones/configuracoe-icone.svg"
+          alt="Ícone Configurações" />
+        Configurações e Preferências
+      </div>
+      <div class="texto-item">
+        <img src="../pages/icones/historico-icone.svg" alt="Ícone Histórico" />
+        Histórico de Uso
+      </div>
+      <div class="texto-item">
+        <img src="../pages/icones/suporte-icone.svg" alt="Ícone Suporte" />
+        Suporte e Ajuda
+      </div>
+    </div>
+
+    <!-- Overlay -->
+    <!-- Overlay -->
+    <div id="overlay" class="overlay">
+      <div class="overlay-content">
+        <span class="close-overlay" id="close-overlay">&times;</span>
+
+        <!-- Foto de Perfil -->
+
+        <!-- Círculo para mudança de foto -->
+        <div class="foto-circulo2" id="foto-circulo2">
+          <!-- A imagem será inserida dinamicamente aqui -->
+        </div>
+
+        <!-- Input oculto para foto -->
+        <input
+          type="file"
+          id="input-foto"
+          style="display: none"
+          accept="image/*" />
+
+        <!-- Campos de Informação -->
+        <div class="campo">
+          <label for="nome-completo">Nome Completo:</label>
+          <input type="text" id="nome-completo" placeholder="Digite seu nome" />
+        </div>
+
+        <div class="campo">
+          <label for="email">Email:</label>
+          <input type="email" id="email" value="exemplo@dominio.com" disabled />
+        </div>
+
+        <div class="campo">
+          <label for="telefone">Telefone (opcional):</label>
+          <input type="tel" id="telefone" placeholder="Digite seu telefone" />
+        </div>
+
+        <div class="campo">
+          <label for="data-nascimento">Data de Nascimento (opcional):</label>
+          <input type="date" id="data-nascimento" />
+        </div>
+
+        <!-- Botão de Salvar -->
+        <button class="botao-salvar" id="salvar">Salvar</button>
+      </div>
+    </div>
+
+    <!-- Mensagem de confirmação -->
+
+    <!-- Mensagem de confirmação de salvar -->
+    <div id="confirmacao-salvar" class="confirmacao">
+      <div class="confirmacao-conteudo">
+        <p>Alterações salvas com sucesso!</p>
+        <button id="fechar-salvar">Fechar</button>
+      </div>
+    </div>
+  </body>
+</html>

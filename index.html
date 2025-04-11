@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeoCliQ</title>
+    <style>
+      /* Definindo cores */
+      :root {
+        --gelo: #f0f8ff;
+        --azul: #007bff;
+        --laranja: #ffa500;
+        --preto: #000000;
+        --branco: #ffffff;
+        --cinza: #777;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--gelo); /* Fundo da página cor gelo */
+        color: #333;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .main-content {
+        flex: 1; /* Faz o conteúdo principal crescer e preencher o espaço disponível */
+      }
+
+      .logo-container {
+        position: absolute;
+        top: 50px; /* Aumentando a distância do topo */
+        left: 30px; /* Distância maior do lado esquerdo */
+        text-align: left;
+      }
+
+      .logo {
+        font-size: 48px; /* Aumentando o tamanho do logo */
+        font-weight: bold;
+      }
+
+      .neo {
+        color: var(--azul);
+      }
+
+      .cliq {
+        color: var(--laranja);
+      }
+
+      .slogan {
+        font-size: 22px; /* Aumentando o tamanho do slogan */
+        color: #555;
+        margin-top: 10px;
+      }
+
+      .btn-entrar {
+        display: inline-block;
+        padding: 16px 32px; /* Aumentando o padding do botão */
+        font-size: 24px; /* Aumentando o tamanho da fonte do botão */
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--branco); /* Cor do texto branco */
+        background-color: var(--preto); /* Cor de fundo preto */
+        border: 2px solid var(--preto);
+        border-radius: 25px;
+        text-align: center;
+        transition: background-color 0.3s, color 0.3s;
+        margin-top: 30px; /* Distância do botão para o slogan */
+      }
+
+      .btn-entrar:hover {
+        background-color: var(
+          --branco
+        ); /* Cor de fundo do botão ao passar o mouse */
+        color: var(--preto); /* Cor do texto do botão ao passar o mouse */
+      }
+
+      /* Ajustes para o texto */
+      h2 {
+        font-size: 32px; /* Aumentando o tamanho da fonte do texto h2 */
+        color: var(--cinza);
+        margin-top: 30px;
+        max-width: 800px; /* Limita a largura do texto */
+        text-align: left; /* Alinha o texto à esquerda */
+        line-height: 1.8; /* Aumenta o espaçamento entre linhas */
+        word-wrap: break-word; /* Quebra as palavras para evitar transbordamento */
+      }
+
+      .final-text {
+        color: var(--cinza);
+        font-size: 28px; /* Aumentando o tamanho da fonte do texto final */
+        line-height: 1.8;
+        margin-top: 20px;
+      }
+
+      .cliq-text {
+        color: var(--laranja); /* Cor laranja para a palavra "CliQ" */
+      }
+
+      /* Seção de Benefícios */
+      .benefits-container {
+        margin-top: 900px;
+        text-align: center;
+      }
+
+      .benefits-container h2 {
+        font-size: 32px;
+        color: var(--azul);
+      }
+
+      .benefits {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 40px;
+      }
+
+      .benefit {
+        width: 30%;
+        margin: 20px 0;
+        text-align: center;
+      }
+
+      .benefit h3 {
+        font-size: 24px;
+        color: var(--laranja);
+      }
+
+      .benefit p {
+        font-size: 16px;
+        color: var(--cinza);
+      }
+
+      #motivo-de-escolher {
+        margin-left: 2%;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 20px;
+        background-color: var(--preto);
+        color: var(--branco);
+        position: relative;
+        margin-top: 120px;
+      }
+
+      .footer a {
+        color: var(--branco);
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+
+      .rede-social {
+        display: flex;
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+        height: auto; /* Remover a altura fixa */
+        margin-top: 20px; /* Reduzir a margem superior */
+      }
+
+      .social-container {
+        text-align: center;
+        margin-top: 20px; /* Reduzir a margem superior */
+      }
+
+      .social-icon {
+        display: inline-block;
+        padding: 5px;
+        margin: 5px;
+        font-size: 24px;
+        color: var(--branco);
+        background-color: var(--azul);
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 50px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        background-size: cover; /* Faz a imagem cobrir todo o círculo */
+        background-position: center; /* Centraliza a imagem */
+      }
+
+      .social-icon:hover {
+        background-color: var(--laranja);
+      }
+      /* Imagens de fundo para cada rede social */
+      .social-icon.facebook {
+        background-image: url("../pages/imagens/1-facebook-logo.png");
+      }
+
+      .social-icon.instagram {
+        background-image: url("../pages/imagens/instagram.jpg");
+      }
+
+      .social-icon.linkedin {
+        background-image: url("../pages/imagens/likendin.png");
+      }
+
+      /* Responsividade para telas menores */
+      @media (max-width: 768px) {
+        .logo {
+          font-size: 28px; /* Reduzir o tamanho do logo em telas pequenas */
+        }
+
+        .slogan {
+          font-size: 14px; /* Ajuste do tamanho do slogan em telas pequenas */
+        }
+
+        .btn-entrar {
+          font-size: 16px !important; /* Reduzir o tamanho da fonte do botão */
+          padding: 10px 20px; /* Ajustar o tamanho do botão */
+        }
+
+        h2 {
+          font-size: 18px !important; /* Reduzir o tamanho da fonte do texto h2 */
+          line-height: 1.4; /* Ajuste no espaçamento entre as linhas */
+          max-width: 90%; /* Ajusta a largura do texto para caber melhor na tela */
+        }
+
+        .final-text {
+          font-size: 16px !important; /* Reduzir o tamanho da fonte do texto final no mobile */
+        }
+
+        /* Ajustes para a seção de benefícios no mobile */
+        .benefits {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .benefit {
+          width: 80%; /* Ajustar o tamanho dos itens na seção de benefícios */
+        }
+
+        #motivo-de-escolher {
+          margin-left: 6%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo-container">
+      <div class="logo">
+        <span class="neo">Neo</span><span class="cliq">CliQ</span>
+      </div>
+
+      <!-- Slogan -->
+      <div class="slogan">Um clique, infinitas possibilidades</div>
+
+      <!-- Botão "Entrar" -->
+      <a href="login.html" class="btn-entrar">Entrar</a>
+
+      <!-- Texto H2 -->
+      <h2>
+        Conectamos você às melhores empresas e profissionais, oferecendo
+        produtos e serviços de forma rápida, prática e segura.
+      </h2>
+
+      <!-- Texto final (H2) com quebra no meio -->
+      <h2 class="final-text">
+        <b
+          >Tudo o que você precisa a um <span class="cliq-text">CliQ</span
+          ><br />
+          de distância.</b
+        >
+      </h2>
+    </div>
+
+    <!-- Seção de Benefícios -->
+    <div class="benefits-container">
+      <h2 id="motivo-de-escolher">Por que escolher a NeoCliQ?</h2>
+      <div class="benefits">
+        <div class="benefit">
+          <h3>Conectividade Rápida</h3>
+          <p>
+            Encontre facilmente empresas e profissionais de acordo com sua
+            necessidade em apenas um clique.
+          </p>
+        </div>
+        <div class="benefit">
+          <h3>Segurança</h3>
+          <p>
+            Toda a plataforma é projetada com a segurança dos seus dados e
+            transações em mente.
+          </p>
+        </div>
+        <div class="benefit">
+          <h3>Variedade de Opções</h3>
+          <p>
+            Escolha entre uma ampla gama de produtos e serviços oferecidos por
+            vendedores e prestadores de serviços qualificados.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção de Redes Sociais -->
+    <div class="rede-social">
+      <h4>Siga-nos nas redes sociais</h4>
+    </div>
+    <div class="social-container">
+      <a
+        href="https://facebook.com"
+        target="_blank"
+        class="social-icon facebook"></a>
+      <a
+        href="https://instagram.com"
+        target="_blank"
+        class="social-icon instagram"></a>
+      <a
+        href="https://linkedin.com"
+        target="_blank"
+        class="social-icon linkedin"></a>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+      <div>© 2025 NeoCliQ. Todos os direitos reservados.</div>
+      <div>
+        <a href="#">Política de Privacidade</a> |
+        <a href="#">Termos de Uso</a>
+      </div>
+    </footer>
+  </body>
+</html>

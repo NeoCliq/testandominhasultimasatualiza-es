@@ -1,0 +1,78 @@
+/* Geral */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+/* Container principal */
+.container {
+  text-align: center;
+}
+
+/* Logo */
+.logo img {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Botões */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff6f00; /* Laranja */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Efeito de hover nos botões */
+button:hover {
+  background-color: #e65c00;
+}
+
+/* Links */
+.links {
+  margin-top: 15px;
+}
+
+.links a {
+  color: #ff6f00; /* Laranja */
+  text-decoration: none;
+}
+
+/* Links do Cadastro e Login */
+.links p {
+  font-size: 14px;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .container {
+    width: 90%;
+  }
+}

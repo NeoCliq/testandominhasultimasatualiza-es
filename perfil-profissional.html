@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profissional</title>
+    <link rel="stylesheet" href="perfil-profissional.css" />
+  </head>
+  <body>
+    <div class="text-left">
+      <h1 class="title">Dr. Roberto Cabrini - Dentista</h1>
+      <h5 class="title" id="h5">Especialidade:</h5>
+      
+      <h5 class="subtitle" id="h5-2">
+        Odontologia para Pacientes com Necessidades Especiais</5>
+        <h5 class="title" id="local">Local:</h5>
+        <h5 class="title" id="h5-2">
+          <a href="https://maps.app.goo.gl/Vh6inPXRB3aAVGt98">
+          Clinica Orthodontic, Vitória da Conquista</5>
+        </a>
+    </div>
+    
+    <div class="image-container">
+      <img src="../pages/imagens/medico.png" alt="Imagem Exemplo" class="right-image" />
+    </div>
+
+<!-- Retângulo branco acima do overlay -->
+<div class="rectangle">
+  <!-- Bloco de texto de experiência -->
+  <div class="text-block">
+    <div class="text-with-icon">
+      <a href="../../teste/experiencia-profissional.html">
+        <span class="experience-block">10 anos</span>
+        <img src="../pages/icones/experiencia.svg" alt="Ícone" class="icon" />
+      </a>
+    </div>
+    <span class="experience-label">Experiência</span>
+  </div>
+
+  <!-- Bloco de texto de avaliações -->
+  <div class="text-block">
+    <div class="text-with-icon">
+      <a href="pagina-feedback.html">
+      <span class="reviews">30+</span>
+      <img src="../pages/icones/avaliacoes.svg" alt="Ícone Avaliações" class="icon" />
+    </a>
+    </div>
+    <span class="reviews-small">Avaliações</span>
+  </div>
+</div>
+
+
+
+    <div class="overlay" id="overlay">
+      <div class="divider"></div>
+      <button class="button" id="button">Agende!</button>
+      <div class="favorite-icon">
+        <img src="../pages/icones/favorito-profissional.svg" alt="Favorito" id="favoriteButton" />
+      </div>
+        <!-- Botão -->
+ <!-- Botão -->
+ <button class="servicos-button" id="servicosButton">Selecione</button>
+
+ <!-- Filtro de fundo (overlay) -->
+ <div class="popup-overlay" id="popupOverlay"></div>
+
+ <!-- Pop-up -->
+ <div class="popup-window" id="popupWindow">
+   <div class="popup-content">
+     <h3>Escolha os serviços</h3>
+     <form id="servicesForm">
+       <label>
+         <input type="checkbox" name="service" value="Serviço 1"> Serviço 1
+       </label><br>
+       <label>
+         <input type="checkbox" name="service" value="Serviço 2"> Serviço 2
+       </label><br>
+       <label>
+         <input type="checkbox" name="service" value="Serviço 3"> Serviço 3
+       </label><br>
+       <label>
+         <input type="checkbox" name="service" value="Serviço 4"> Serviço 4
+       </label><br>
+     </form>
+   </div>
+   <button class="close-btn" id="closeBtn">x</button>
+ </div>
+
+
+
+      <p class="texto-selecione-servicos" id="texto-selecione-servicos">
+        Selecione o serviço
+      </p>
+    
+
+<!--Calendário - começo -->
+
+<div class="selecionando-meses-container">
+  <button id="selecionando-meses-btn" class="selecionando-meses-btn">
+    <img
+      src="../pages/icones/calendario-mes.svg"
+      alt="Ícone do mês"
+      class="calendario-mes" />
+    <span id="mes-atual-nome"></span>
+  </button>
+
+  <div id="selecionando-meses-opcoes" class="selecionando-meses-opcoes">
+    <ul>
+      <li data-mes="Janeiro">Janeiro</li>
+      <li data-mes="Fevereiro">Fevereiro</li>
+      <li data-mes="Março">Março</li>
+      <li data-mes="Abril">Abril</li>
+      <li data-mes="Maio">Maio</li>
+      <li data-mes="Junho">Junho</li>
+      <li data-mes="Julho">Julho</li>
+      <li data-mes="Agosto">Agosto</li>
+      <li data-mes="Setembro">Setembro</li>
+      <li data-mes="Outubro">Outubro</li>
+      <li data-mes="Novembro">Novembro</li>
+      <li data-mes="Dezembro">Dezembro</li>
+    </ul>
+  </div>
+
+  <div id="dias-container" class="dias-container"></div>
+</div>
+<div id="data-selecionada" class="data-selecionada"></div>
+
+
+
+
+<!--Calendário - fim -->
+<div class="linha-3"></div>
+
+<div class="cabecalho-temporal">
+  <img src="../pages/icones/relogio-agendamento.svg" alt="Ícone de Alarme" width="25" height="25" />
+  <span class="titulo-temporal">Horário</span>
+</div>
+
+<!-- Linha de botões com horários -->
+<div id="botaoHorario" class="conjunto-botoes-horario">
+  <ul >
+    <li data-hora="08:00">08:00</li>
+    <li data-hora="09:00">09:00</li>
+    <li data-hora="10:00">10:00</li>
+    <li data-hora="11:00">11:00</li>
+    <li data-hora="12:00">12:00</li>
+    <li data-hora="13:00">13:00</li>
+    <li data-hora="14:00">14:00</li>
+    <li data-hora="15:00">15:00</li>
+    <li data-hora="16:00">16:00</li>
+    <li data-hora="17:00">17:00</li>
+    <li data-hora="18:00">18:00</li>
+    <li data-hora="19:00">19:00</li>
+  </ul>
+ 
+</div>
+<div class="linha-3"></div>
+<!--Horário fim-->
+
+<div class="user-info">
+  <label for="nomeUsuario">Nome:</label>
+  <span id="nomeUsuario"></span>
+</div>
+
+<div class="user-info">
+  <label for="telefone">Telefone:</label>
+  <span id="telefoneUsuario"></span>
+</div>
+<div>
+  
+  <span class="edit-link" onclick="toggleEditForm()">O serviço não é para você?</span>
+</div>
+
+   <div class="linha"></div>
+
+<div>
+<h6></h6>
+
+
+</div>
+
+<div>
+  
+  
+</div>
+
+<div class="overlay-user" id="overlay-user"></div>
+
+<div class="edit-form" id="editForm">
+  <span class="close-btn" onclick="toggleEditForm()">×</span>
+  <h3>Atualizar dados para agendamento</h3>
+  <form id="editUserForm">
+      <label for="editNomeUsuario">Nome:</label>
+      <input type="text" id="editNomeUsuario" name="editNomeUsuario" placeholder="Digite novo nome de usuário" required>
+
+      <label for="editTelefone">Telefone:</label>
+      <input type="text" id="editTelefone" name="editTelefone" placeholder="Digite novo telefone" required>
+
+      <input type="submit" value="Salvar Alterações">
+  </form>
+</div>
+
+<div class="atendimento-text">
+  <span>Qual a forma de atendimento?</span>
+  <span class="selected-option-text" id="selected-option-text"
+    ></span
+  >
+</div>
+<div class="atendimento-text">
+  <button class="atendimento-btn" onclick="toggleOptions(event)">Escolha
+  </button>
+  <div class="options-container" id="options-container">
+    <button class="option-btn" onclick="chooseOption('Online')">
+      Online
+    </button>
+    <button class="option-btn" onclick="chooseOption('Presencial')">
+      Presencial
+    </button>
+  </div>
+</div>
+<div class="linha-2"></div>
+<div class="container-forma-pagamento">
+  <div class="titulo-forma-pagamento">Forma de pagamento</div>
+  <div class="opcoes-pagamento-container">
+    <label class="opcao-pagamento">
+      <input type="radio" name="forma-pagamento" value="Pix" /> Pix
+    </label>
+    <label class="opcao-pagamento">
+      <input type="radio" name="forma-pagamento" value="Cartão" /> Cartão
+    </label>
+    <label class="opcao-pagamento">
+      <input type="radio" name="forma-pagamento" value="Dinheiro" />
+      Dinheiro
+    </label>
+  </div>
+  
+</div>
+
+</div>
+<div id="ultima-tela-confirmacao" class="popup-confirmacao">
+  <div class="popup-overlay"></div>
+  <div class="popup-content">
+    <h2>Confirmar Agendamento</h2>
+    <div id="confirmacao-nome"></div>
+    <div id="confirmacao-telefone"></div>
+    
+    <div id="confirmacao-data"></div>
+    <div id="confirmacao-horario"></div>
+    <div id="confirmacao-servicos"></div>
+    <div id="confirmacao-atendimento"></div>
+
+    <div id="confirmacao-pagamento"></div>
+    <button id="confirmar-agendamento">Confirmar</button>
+    <button id="cancelar-agendamento">Cancelar</button>
+  </div>
+</div>
+
+    </div>
+
+    <div class="icons">
+      <a href="teste-2.html">
+      <img src="../pages/icones/voltar-seta-2.svg" alt="Voltar" /></a>
+    </div>
+   
+
+    
+    <script src="perfil-profissional.js"></script>
+  </body>
+</html>

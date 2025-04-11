@@ -1,0 +1,892 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+  background-color: #b0e2ee;
+}
+
+a {
+  text-decoration: none; /* Remove o sublinhado */
+  color: inherit; /* Herda a cor do elemento pai, ou você pode definir uma cor específica */
+}
+
+a:hover {
+  text-decoration: none; /* Remove o sublinhado quando passar o mouse */
+  color: inherit; /* Mantém a cor sem alteração ao passar o mouse */
+}
+
+/* Retângulo branco acima do overlay */
+/* Retângulo branco acima do overlay */
+.rectangle {
+  position: fixed;
+  top: 42%;
+  left: 10%;
+  right: 10%;
+  height: 65px; /* Ajuste a altura do retângulo */
+  background-color: white;
+  border-radius: 25px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  align-items: center;
+  gap: 20px; /* Espaçamento entre os blocos de texto (experiência e avaliações) */
+}
+
+/* Bloco de textos dentro do retângulo */
+.text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza verticalmente o conteúdo dentro do bloco */
+  justify-content: center;
+}
+
+/* Sub-bloco de texto com ícone (alinhamento horizontal) */
+.text-with-icon {
+  display: flex;
+  align-items: AUTO;
+  justify-content: flex-start; /* Alinha ícones e texto à esquerda */
+}
+
+/* Texto "X anos" e "Experiência" */
+.experience-block {
+  font-size: 1.5rem;
+  color: #007bff; /* Cor azul */
+  margin-right: 20px; /* Espaçamento entre o texto e o ícone */
+}
+
+/* Texto de descrição "Experiência" */
+.experience-label {
+  font-size: 0.8rem;
+  color: black;
+  text-align: right 30px; /* Alinha o texto de forma centralizada abaixo do número de anos */
+}
+
+/* Texto "30+" e "Avaliações" */
+.reviews {
+  font-size: 1.5rem;
+  color: #007bff; /* Cor azul */
+  margin-right: 10px; /* Espaçamento entre o texto e o ícone */
+}
+
+/* Texto de descrição "Avaliações" */
+.reviews-small {
+  font-size: 0.8rem;
+  color: black;
+  text-align: left 2px; /* Alinha o texto de forma centralizada abaixo do número de avaliações */
+}
+
+/* Ícones ao lado dos textos */
+.icon {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+/* Overlay inicial */
+.overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 45%;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  transition: height 0.3s ease-in-out;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  z-index: 5;
+}
+
+/* Adicionando o traço centralizado no topo do overlay */
+.divider {
+  width: 50px;
+  height: 3px;
+  background-color: #007bff;
+  margin-bottom: 10px;
+  border-radius: 50px;
+}
+
+.overlay h2 {
+  margin: 10px 0;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.overlay p {
+  margin: 10px 0 0;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.overlay.expanded {
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .overlay h2 {
+    font-size: 1.5rem;
+  }
+
+  .overlay p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay h2 {
+    font-size: 1.3rem;
+  }
+
+  .overlay p {
+    font-size: 0.9rem;
+  }
+}
+
+.button {
+  position: fixed;
+  bottom: 3%;
+  right: -35%;
+  transform: translateX(-50%);
+  background-color: #007bff;
+  color: white;
+  padding: 10px 30%;
+  font-size: 1.2rem;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  z-index: 5;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.icons,
+.favorite-icon {
+  position: fixed;
+  z-index: 4;
+}
+
+.icons {
+  top: 10px;
+  left: 10px;
+}
+
+.favorite-icon {
+  bottom: 20px;
+  left: 17px;
+  z-index: 10;
+}
+
+.icons img,
+.favorite-icon img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 1;
+}
+/* Estilos do botão */
+
+/* Calendário*/
+.selecionando-meses-container {
+  position: relative;
+  text-align: center;
+  width: 90%;
+  margin-top: 50px;
+  left: 0px;
+  background-color: white;
+}
+.selecionando-meses-btn:hover {
+  background-color: #0057b300;
+}
+
+.selecionando-meses-btn {
+  padding: 5px 0px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  color: #007bff;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: bold;
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calendario-mes {
+  width: 20px;
+  height: 20px;
+}
+
+.selecionando-meses-opcoes {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #007bff;
+  z-index: 9999;
+  width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.selecionando-meses-opcoes ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.selecionando-meses-opcoes li {
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  color: white;
+}
+
+.selecionando-meses-opcoes li:hover {
+  background-color: #005fc400;
+}
+
+.dias-container {
+  display: flex;
+  overflow-x: auto;
+  margin-top: 20px;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
+
+.dia-container {
+  min-width: 43px;
+  height: 70px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f1f1;
+  color: rgb(15, 15, 15);
+  font-size: 14px;
+  font: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.dia-container.ativo {
+  background-color: #cce5ff;
+  color: #0056b3;
+}
+
+.dia-container.dia-atual {
+  background-color: #d1d1d1; /* Cor para o dia atual */
+  color: rgb(0, 0, 0);
+}
+
+.dia-container .dia-nome {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.data-selecionada {
+  margin-top: 20px;
+  font-size: 12px;
+  color: rgb(0, 0, 0);
+  max-width: 100%;
+}
+/* Calendário*/
+
+/* Estilos do botão */
+.servicos-button {
+  padding: 2px 10px;
+  background-color: #ffffff;
+  color: #007bff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  right: 30px;
+  margin-top: 25px !important;
+}
+
+.servicos-button:hover {
+  background-color: #0161c9;
+  color: #ffffff;
+}
+
+.selected {
+  background-color: #28a745; /* Verde */
+  color: #ffffff;
+}
+
+/* Estilos do pop-up */
+.popup-window {
+  display: none; /* Inicialmente oculto */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  width: 300px;
+  text-align: center;
+}
+
+.popup-window .popup-content {
+  margin-bottom: 20px;
+}
+
+.popup-window .close-btn {
+  color: #333;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.popup-window .close-btn:hover {
+  background-color: #0161c9;
+}
+
+/* Filtro de fundo do pop-up */
+.popup-overlay {
+  display: none; /* Inicialmente oculto */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.texto-selecione-servicos {
+  padding: 2px 10px;
+  background-color: #ffffff;
+  color: #b1b1b1;
+  font-size: 1rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  left: 30px;
+  margin-top: 25px !important;
+}
+
+/* Container da imagem à direita */
+/* Container da imagem à direita, centralizada na tela */
+/* Container da imagem à direita */
+/* Container da imagem à direita */
+.image-container {
+  position: absolute;
+  top: 25%; /* Posiciona no meio da tela verticalmente */
+  right: 0; /* Fixa à direita */
+  transform: translateY(-50%); /* Ajusta a posição para ficar centralizada */
+  width: 60%; /* Define que a imagem ocupará 60% da largura da tela */
+  z-index: 1;
+}
+
+/* Estilizando a imagem para ocupar 100% da largura do container */
+.right-image {
+  width: 100%; /* A imagem ocupará toda a largura do container */
+  height: auto; /* Mantém a proporção da imagem */
+}
+
+/* Container dos textos à esquerda, respeitando a largura da imagem */
+.text-left {
+  position: absolute;
+  top: 25%; /* Centraliza os textos verticalmente */
+  left: 0; /* Posiciona os textos no lado esquerdo */
+  transform: translateY(-50%); /* Ajusta para centralizar corretamente */
+  width: 40%; /* Os textos vão ocupar 40% da largura da tela */
+  padding-left: 20px; /* Espaço entre a borda esquerda e o texto */
+  box-sizing: border-box; /* Para garantir que o padding não afete a largura */
+  z-index: 2; /* Garante que os textos fiquem acima da imagem */
+  overflow: hidden; /* Impede o texto de ultrapassar o limite do contêiner */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Estilos do título */
+.title {
+  font-size: clamp(
+    1.5rem,
+    5vw,
+    2rem
+  ); /* Ajusta o tamanho da fonte automaticamente */
+  color: #007bff; /* Azul para o título */
+  margin: 0;
+  padding-bottom: 10px; /* Espaço abaixo do título */
+  white-space: normal; /* Permite que o texto quebre em múltiplas linhas */
+  overflow: hidden; /* Impede que o texto ultrapasse o contêiner */
+}
+
+/* Estilos do subtítulo */
+.subtitle {
+  font-size: clamp(
+    1rem,
+    4vw,
+    1.2rem
+  ); /* Ajusta o tamanho da fonte automaticamente */
+  color: #555; /* Cor mais suave para o subtítulo */
+  margin: 0;
+  white-space: normal; /* Permite que o texto quebre em múltiplas linhas */
+  overflow: hidden; /* Impede que o texto ultrapasse o contêiner */
+}
+
+/* Responsividade - Ajustes para telas menores */
+@media (max-width: 768px) {
+  .title {
+    font-size: clamp(1.2rem, 8vw, 1.5rem);
+  }
+
+  .subtitle {
+    font-size: clamp(0.9rem, 6vw, 1.1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: clamp(1rem, 10vw, 1.2rem);
+  }
+
+  .subtitle {
+    font-size: clamp(0.8rem, 8vw, 1rem);
+  }
+}
+
+#h5 {
+  font-size: 10px;
+  color: #555;
+}
+#h5-2 {
+  font-size: 12px;
+  color: #013a77;
+}
+#local {
+  font-size: 10px;
+  color: #555;
+  margin-top: 20px;
+}
+
+/*user*/
+.user-info {
+  margin-bottom: 10px;
+  top: 30px;
+}
+.user-info label {
+  font-size: 12px;
+  margin-right: 5px;
+
+  padding: 2px 10px;
+  background-color: #ffffff;
+  color: #b1b1b1;
+  font-size: 1rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  left: 30px;
+  margin-top: 25px !important;
+}
+.user-info span {
+  font-size: 12px;
+  margin-right: 5px;
+  position: relative;
+  top: 25px; /* Desce o elemento 10px */
+}
+.edit-link {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 13px;
+
+  /* Use margin-top para afastar do topo */
+  margin-top: 20px; /* Adiciona um espaço de 20px acima do link */
+
+  /* Se quiser usar posicionamento absoluto */
+  position: relative; /* Para que o 'top' funcione */
+  top: 20px; /* Faz o link descer 20px em relação à sua posição original */
+}
+
+.linha {
+  /* Linha abaixo do link */
+  border-bottom: 1px solid #b1b1b1; /* Adiciona uma linha azul abaixo do link */
+  padding-bottom: 200px; /* Cria um pequeno espaçamento entre o link e a linha */
+  padding: 20px 45%;
+}
+
+.linha-2 {
+  /* Linha abaixo do link */
+  border-bottom: 1px solid #b1b1b1; /* Adiciona uma linha azul abaixo do link */
+  padding-bottom: 200px; /* Cria um pequeno espaçamento entre o link e a linha */
+  padding: 10px 45%;
+}
+.linha-3 {
+  /* Linha abaixo do link */
+  border-bottom: 1px solid #b1b1b1; /* Adiciona uma linha azul abaixo do link */
+  padding-bottom: 200px; /* Cria um pequeno espaçamento entre o link e a linha */
+  padding: 0px 45%;
+}
+
+#nomeUsuario {
+  width: 10%;
+  justify-content: right;
+}
+
+#telefoneUsuario {
+  align-items: end;
+  color: #333;
+}
+.overlay-user {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+.edit-form {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-width: 90%;
+}
+.edit-form h3 {
+  font-size: 10px;
+  margin-bottom: 10px;
+  color: #333;
+}
+.edit-form input[type="text"] {
+  font-size: 8px;
+  padding: 6px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.edit-form input[type="submit"] {
+  font-size: 8px;
+  padding: 6px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+.edit-form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+}
+.close-btn:hover {
+  color: #f44336;
+}
+
+/* horário designer
+
+ /* Estilo para o header do horário */
+/* Estilo para o header do horário */
+/* Estilo para o cabeçalho da página */
+.cabecalho-temporal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 2px;
+
+  color: #fff;
+}
+
+.titulo-temporal {
+  margin-right: 90px;
+  padding: 5px 0px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  color: #b1b1b1;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: bold;
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Estilo para os botões de horário */
+/* Estilo do cabeçalho */
+.cabecalho-temporal {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 90%;
+}
+
+.titulo-temporal {
+  font-size: 18px;
+  font-weight: bold;
+  color: #b1b1b1;
+}
+
+/* Estilo da lista de botões com horários */
+.conjunto-botoes-horario {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: -30px;
+  padding: 10px 0;
+  width: 90%;
+  right: 20px;
+}
+
+.conjunto-botoes-horario ul {
+  list-style-type: none;
+  display: flex;
+  gap: 9px;
+  padding: 0;
+  margin: 0;
+}
+
+.conjunto-botoes-horario li {
+  background-color: #f1f1f1;
+  color: rgb(0, 0, 0);
+  padding: 10px 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Estilo para o item de horário selecionado */
+
+/* Destaca o horário selecionado */
+.conjunto-botoes-horario li.selecionado {
+  background-color: #cce5ff; /* Cor de fundo para o horário selecionado */
+  font-weight: bold;
+  color: #0056b3; /* Cor do texto quando selecionado */
+}
+
+/* Rolagem horizontal */
+.conjunto-botoes-horario ul {
+  white-space: nowrap;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.conjunto-botoes-horario li {
+  flex-shrink: 0;
+}
+
+/* Atendimento online e presencial */
+/* Atendimento online e presencial */
+.atendimento-container {
+  background-color: #fff;
+  padding: 30px 20px 20px 20px; /* Aumenta o padding-top para garantir o afastamento */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: flex-start; /* Mantém os itens alinhados à esquerda */
+  align-items: center; /* Alinha os itens no centro vertical */
+  width: 400px;
+  margin-top: 40px; /* Ajusta a margem superior para afastar o elemento */
+  position: relative; /* Permite usar top, mas removemos o top: 10px */
+}
+
+/* Outros estilos seguem iguais */
+.atendimento-text {
+  font-size: 12px;
+  margin-right: 10px; /* Aumenta a distância entre o texto e o botão */
+  margin-top: 0px;
+  background-color: #ffffff;
+  color: #b1b1b1;
+  font-size: 1rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-bottom: 0px;
+  transition: background-color 0.3s ease;
+}
+
+.atendimento-btn {
+  background-color: #007bff00;
+  color: #007bff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.options-container {
+  display: none;
+  position: absolute;
+  background-color: #007bff;
+  border-radius: 5px;
+  margin-top: 30px;
+  width: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+}
+
+.option-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 15px;
+  text-align: center;
+  width: 100%; /* Isso garante que o botão ocupe 100% da largura da options-container */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.option-btn:hover {
+  background-color: #0056b3;
+}
+
+.selected-option-text {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+/* Container principal para o conteúdo */
+.container-forma-pagamento {
+  background-color: #ffffff00;
+  padding: 5px;
+
+  width: 300px;
+}
+
+/* Título "Forma de pagamento" */
+.popup-confirmacao {
+  display: none; /* Inicialmente oculto */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 23;
+}
+
+/*Última tela*/
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left; /* Alterado para alinhamento à esquerda */
+  display: flex;
+  flex-direction: column; /* Para garantir que tudo fique em coluna */
+}
+
+.popup-content h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.popup-content div {
+  margin: 10px 0; /* Espaço entre os itens */
+}
+
+.popup-content div span {
+  font-weight: bold; /* Destaca os títulos */
+  display: inline-block;
+  min-width: 100px; /* Garante que os títulos tenham um tamanho fixo */
+}
+
+.popup-content div {
+  margin-bottom: 15px;
+}
+
+.popup-content div:not(:empty) {
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+button {
+  margin: 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#cancelar-agendamento {
+  background-color: red;
+}

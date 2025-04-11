@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Retângulo Azul com Ícones</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh; /* Garantir que o corpo ocupe a altura mínima da tela */
+        display: flex;
+        flex-direction: column;
+        font-family: Arial, sans-serif;
+        position: relative;
+        padding-bottom: 100px !important; /* Criar um espaço livre suficiente para o retângulo azul na parte inferior */
+      }
+
+  /* Estilo para a barra de navegação inferior */
+.retangulo {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 65px;
+  background-color: #007bff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  z-index: 10;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Estilo para cada item da barra de navegação */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+
+/* Ícones dos itens */
+.icone {
+  width: 20px !important;
+  height: 20px !important;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 5px; /* Espaço entre ícone e texto */
+}
+
+/* Definir ícones */
+#iconeInicio-nav {
+  background-image: url("./icones/home-azul.svg") !important;
+  width: 35px !important;
+  height: 35px !important;
+
+}
+
+#iconeAgendamentos-nav {
+  background-image: url('./icones/calendar-nav.svg');
+}
+
+#iconeFavoritos-nav {
+  background-image: url('./icones/favorito-nav.svg');
+}
+
+#iconeHistorico-nav {
+  background-image: url('./icones/historico-nav.svg');
+}
+
+#iconePerfil-nav {
+  background-image: url('./icones/profile-nav.svg');
+}
+
+/* Texto dos itens da barra */
+.texto {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Efeito de hover nos itens */
+.nav-item:hover {
+  opacity: 0.7;
+}
+
+/* Marcação do item ativo */
+/* Marcação do item ativo */
+.nav-item.ativo .icone {
+  border: 1px solid #ffffff; /* Aumenta a espessura da borda do círculo */
+  border-radius: 50%;
+  padding: 10px; /* Aumenta o padding para aumentar o tamanho do círculo */
+  background-color: #ffffff; /* Mantém o fundo do ícone ativo */
+  width: 40px; /* Aumenta o tamanho do ícone */
+  height: 40px; /* Aumenta o tamanho do ícone */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .texto {
+    font-size: 10px;
+  }
+
+  .icone {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+
+
+      .icone-esquerdo,
+      .icone-direito,
+      .icone-chat
+       {
+        position: absolute;
+        top: 10px;
+        width: 30px;
+        height: 30px;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      .icone-esquerdo {
+        margin-top: 10px;
+        left: 20px;
+        background-image: url("./icones/menu-icon.svg");
+      }
+
+      .icone-direito {
+        margin-top: 10px;
+        right: 10px;
+        background-image: url("./icones/notifications_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg");
+      }
+
+      .icone-chat{
+        margin-top: 10px;
+        right: 50px;
+        background-image: url("./icones/chat.svg");
+      }
+
+     
+
+      .saudacao {
+        position: absolute;
+        top: 70px;
+        left: 20px;
+        color: rgb(0, 0, 0);
+      }
+
+   
+      .saudacao h1,
+      .saudacao p {
+        margin: 0;
+        font-size: 30px;
+      }
+
+      .saudacao p {
+        font-size: 16px;
+        color: gray;
+      }
+
+      .barra-pesquisa {
+        margin-top: 140px;
+        padding: 3px;
+        width: auto;
+        margin-left: 20px;
+        border: 2px solid gray;
+        border-radius: 35px;
+        display: flex;
+        margin-right: 20px !important;
+      }
+
+      .barra-pesquisa:hover {
+        border-color: #007bff;
+      }
+
+      .barra-pesquisa input {
+        width: 100%;
+        padding: 8px;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        font-size: 16px;
+        color: #333;
+      }
+
+      .barra-pesquisa input:focus {
+        border-color: #0056b3;
+      }
+
+      /* Estilo do menu lateral */
+      /* Estilo do menu lateral */
+.menu-lateral {
+  position: fixed;
+  top: 0;
+  left: -70%;
+  width: 70%;
+  height: 100%;
+  background-color: #ffffff;
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+  padding: 20px;
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Menu quando está aberto */
+.menu-lateral.open {
+  left: 0;
+}
+
+/* Opções do menu */
+.menu-opcoes {
+  margin-top: 40px; /* Espaço entre a parte superior e as opções */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaço entre ícone e texto */
+  cursor: pointer;
+}
+
+.icone-menu {
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Definindo os ícones */
+#iconeInicio {
+  background-image: url('./icones/home-menu.svg');
+}
+
+#iconeBuscarProfissionais {
+  background-image: url('./icones/lupa-menu.svg');
+}
+
+#iconeServicos {
+  background-image: url('./icones/services-menu.svg');
+}
+
+#iconeFavoritos {
+  background-image: url('./icones/favorito-menu.svg');
+}
+
+#iconeConsultas {
+  background-image: url('./icones/calendar-menu.svg');
+}
+
+#iconeMensagens {
+  background-image: url('./icones/chat-menu.svg');
+}
+
+#iconeConfiguracoes {
+  background-image: url('./icones/configuracao-menu.svg');
+}
+
+#iconeSuporte {
+  background-image: url('./icones/suporte.svg');
+}
+
+/* Estilo para o texto do menu */
+.texto-menu {
+  font-size: 17px !important;
+  color: #494949;
+}
+
+/* Hover effect para os itens do menu */
+.menu-item:hover {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+/* Responsividade: ajustes no tamanho do texto para dispositivos menores */
+@media (max-width: 768px) {
+  .texto-menu {
+    font-size: 14px;
+  }
+
+  .icone-menu {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .texto-menu {
+    font-size: 12px;
+  }
+
+  .icone-menu {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+
+      .menu-lateral.open {
+        left: 0;
+        position: fixed;
+      }
+
+      /* Estilo do fundo quando o menu está aberto */
+      .fundo-escuro {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #0057b38f;
+        z-index: 999;
+        display: none;
+      }
+
+      .fundo-escuro.show {
+        display: block;
+        position: fixed;
+      }
+
+      /* Estilos para o ícone de fechar (opcional, caso queira adicionar um botão para fechar) */
+      .icone-fechar {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 30px;
+        height: 30px;
+        background-image: url("./icones/close-icon.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        cursor: pointer;
+      }
+
+      /* Estilos para a parte superior do menu (foto e dados do usuário) */
+      .usuario-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .usuario-info .foto-perfil {
+        width: 50px; /* Tamanho fixo para a foto */
+        height: 50px; /* Tamanho fixo para a foto */
+        background-color: #007bff; /* Cor de fundo, pode ser substituída por uma imagem */
+        border-radius: 50%;
+        margin-right: 15px;
+        flex-shrink: 0; /* Impede o círculo de encolher */
+      }
+
+      .usuario-info .dados {
+        color: #333;
+        max-width: 200px; /* Limita a largura para texto ficar dentro do espaço */
+        word-wrap: break-word; /* Quebra a linha para palavras grandes */
+        overflow-wrap: break-word; /* Outra forma de forçar quebra de palavras longas */
+      }
+
+      .usuario-info .dados .nome {
+        font-size: 18px;
+        font-weight: bold;
+        word-wrap: break-word; /* Quebra a linha se necessário */
+        white-space: normal; /* Permite a quebra de linha */
+      }
+
+      .usuario-info .dados .email {
+        font-size: 14px;
+        color: gray;
+        word-wrap: break-word; /* Quebra a linha se necessário */
+        white-space: normal; /* Permite a quebra de linha */
+        overflow-wrap: break-word; /* Garante que palavras grandes sejam quebradas */
+      }
+
+      /* Responsividade: reduz o tamanho da fonte caso o texto seja grande */
+      @media (max-width: 768px) {
+        .usuario-info .dados .nome {
+          font-size: 16px;
+        }
+
+        .usuario-info .dados .email {
+          font-size: 12px;
+          margin-right: 10%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .usuario-info .dados .nome {
+          font-size: 14px;
+        }
+
+        .usuario-info .dados .email {
+          font-size: 10px;
+        }
+      }
+
+      /* Estilos para "Áreas de serviços" e os quadrados */
+      .areas-servicos {
+        margin-top: 70px;
+        margin-left: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #7a7575 !important;
+        margin-right: 20px;
+        
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+      .quadrados-container {
+        display: flex;
+        margin-top: 10px;
+        gap: 15px;
+        margin-left: 20px;
+        margin-right: 20px;
+        
+      }
+
+      .quadrado {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ffffff, #007bff);
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+}
+
+#circulo-saude {
+  background: linear-gradient(135deg, #ffffff, #bffcc6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: #ffffff;
+}
+
+#circulo-saude img {
+  width: 50%; /* Ajuste conforme o tamanho desejado */
+  height: auto;
+}
+.item-servico {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90px; /* igual ao tamanho do .quadrado */
+  text-align: center;
+}
+
+.texto-servico {
+  margin-top: 5px;
+  font-size: 11px;
+  color: #9e9e9e;
+  line-height: 1.2;
+}
+
+
+
+      /* Estilos para "Profissionais" e os quadrados */
+      .areas-profissionais {
+        margin-top: 70px;
+        margin-left: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-right: 20px;
+      }
+
+      .quadrados-container-profissionais {
+        display: flex;
+        margin-top: 10px;
+        gap: 15px;
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+
+      .quadrado-profissionais {
+        width: 200px;
+        height: 300px;
+        background-color: #007bff2f;
+        border-radius: 10px;
+        border: 2px solid #b1b1b1;
+      }
+
+      #quadrado-profissionais-saude { 
+  width: 200px;
+  height: 60px;
+  background: linear-gradient(135deg, #ffffff, #bffcc6);
+
+
+  border-radius: 20px;
+  border: 2px solid #ffffff;
+  display: flex;
+  flex-direction:row;
+  justify-content: flex-start; /* Garante que os itens fiquem no topo */
+  padding: 10px;
+  position: relative; /* Necessário para posicionamento absoluto da imagem */
+  overflow: hidden; /* Garante que a imagem não ultrapasse os limites do quadrado */
+}
+
+.nome-profissao,
+.nome-profissional {
+  color: #002955; /* Cor azul */
+  text-align: left;
+  font-weight: bold;
+  word-wrap: break-word; /* Garante que o texto quebre quando for longo */
+  overflow-wrap: break-word; /* Garante que o texto longo se quebre */
+  white-space: normal; /* Permite que o texto quebre linha quando necessário */
+}
+
+.nome-profissao {
+  font-size:12px;
+  margin-bottom: 5px;
+}
+
+.nome-profissional {
+  font-size: 8px;
+  color: #333; /* Cor do nome do profissional */
+}
+
+.imagem-profissional {
+  width: 80px; /* Ajuste o tamanho da imagem */
+  height: 80px; /* Ajuste o tamanho da imagem */
+  background-image: url(./imagens/medico.png); /* Defina o caminho da sua imagem */
+  background-size: contain; /* Faz a imagem ser redimensionada para se ajustar dentro do quadrado */
+  background-repeat: no-repeat;
+  background-position: right 30px; /* Centraliza a imagem */
+  position: absolute; /* Faz a imagem ficar posicionada de forma fixa dentro do quadrado */
+  bottom: 1.5px; /* Distância da borda inferior */
+  right: -15%; /* Centraliza a imagem horizontalmente */
+  transform: translateX(-50%); /* Ajusta o alinhamento horizontal */
+}
+
+
+      
+      .quadrado-profissionais:hover {
+        background-color: #c5dcf5;
+      }
+
+      a {
+  text-decoration: none; /* Remove o sublinhado */
+  color: inherit; /* Herda a cor do texto do elemento pai */
+}
+
+
+/* Área mais procurados*/
+
+ /* Estilos para "Áreas de serviços" e os quadrados */
+ .areas-mais-procurados {
+        margin-top: 70px;
+        margin-left: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-right: 20px;
+        
+      }
+
+      .quadrados-container-mais-procurados {
+        display: flex;
+        margin-top: 10px;
+        gap: 15px;
+        margin-left: 20px;
+        margin-right: 20px;
+        
+      }
+
+      .quadrado-mais-procurados {
+        width: 300px;
+        height: 100px;
+        background-color: #f1f1f1;
+        border-radius: 20px;
+        border: 2px solid #b1b1b1;
+      
+      }
+
+
+       /* Estilos para "agendamentos" e os quadrados */
+ .areas-agendamento {
+        margin-top: 70px;
+        margin-left: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-right: 20px;
+        
+      }
+
+      .quadrados-agendamento {
+        display: flex;
+        margin-top: 10px;
+        gap: 15px;
+        margin-left: 20px;
+        margin-right: 20px;
+        
+      }
+
+      .quadrado-agendamento {
+        width: 300px;
+        height: 50px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        border: 2px solid #b1b1b1;
+      
+      }
+
+/* Estilos para "Promoções" */
+.areas-promocoes {
+    margin-top: 70px;
+    margin-left: 0px; /* Remover margem à esquerda */
+    margin-right: 0px; /* Remover margem à direita */
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    width: 100%; /* Garantir que o contêiner ocupe toda a largura */
+    padding-left: 20px;  /* Espaçamento de 20px da esquerda */
+    box-sizing: border-box; /* Incluir padding e bordas no cálculo da largura */
+}
+
+/* Contêiner que envolve os quadrados de promoções */
+.quadrados-promocoes {
+    display: flex;
+    margin-top: 10px;
+    gap: 0px; /* Remover gap */
+    padding: 0; /* Garantir que não haja padding */
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%; /* Faz os quadrados ocuparem toda a largura */
+    justify-content: space-between; /* Distribui os quadrados igualmente */
+    box-sizing: border-box; /* Incluir bordas e gap no cálculo da largura */
+}
+
+/* Estilo para cada quadrado de promoções */
+.quadrado-promocoes {
+    flex-grow: 1; /* Faz os quadrados crescerem para ocupar o espaço disponível */
+    height: 100px;
+    background-color: #f1f1f1;
+    border-radius: none;
+    border: none solid #b1b1b1;
+    margin: 0; /* Remover margem para preencher toda a largura */
+    text-align: center; /* Centraliza o texto dentro do quadrado */
+    box-sizing: border-box; /* Incluir bordas no cálculo da largura */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Para centralizar a imagem dentro do quadrado */
+}
+
+/* Estilo para a imagem dentro do quadrado */
+.imagem-promocao {
+    width: 100%; /* A imagem ocupará 100% da largura do quadrado */
+    height: 100%; /* A imagem ocupará 100% da altura do quadrado */
+    object-fit: cover; /* A imagem será redimensionada para cobrir todo o quadrado */
+}
+
+
+    </style>
+  </head>
+  <body>
+    
+
+    
+
+    <div class="icone-esquerdo"></div>
+    <div class="icone-direito"></div>
+    <div class="icone-chat"></div>
+    <!-- Barra de navegação inferior -->
+<div class="retangulo">
+  <div class="nav-item ativo">
+    <div class="icone" id="iconeInicio-nav"></div>
+    <span class="texto"></span>
+  </div>
+  <div class="nav-item">
+    <div class="icone" id="iconeAgendamentos-nav"></div>
+    <span class="texto"></span>
+  </div>
+  <div class="nav-item">
+    <div class="icone" id="iconeFavoritos-nav"></div>
+    <span class="texto"></span>
+  </div>
+  <div class="nav-item">
+    <a href="calendario.html">
+    <div class="icone" id="iconeHistorico-nav"></div></a>
+    <span class="texto"></span>
+  </div>
+  <div class="nav-item">
+    <a href="perfil.html">
+    <div class="icone" id="iconePerfil-nav">
+       </div>
+      </a>
+  </div>
+</div>
+
+
+    <!-- Área para o texto de saudação -->
+    <div class="saudacao">
+      <h1>Olá, <span id="nomeSaudacao">Usuário</span></h1>
+      <p id="saudacao-horario"></p> <!-- Onde a saudação do horário será exibida -->
+    </div>
+    
+
+    <!-- Barra de pesquisa -->
+    <div class="barra-pesquisa">
+      <input type="text" placeholder="Buscar..." />
+    </div>
+
+    <!-- "Profissioanais" e quadrados -->
+    <div class="areas-servicos">Áreas de serviços</div>
+    <div class="quadrados-container">
+      <div class="item-servico">
+        <div class="quadrado" id="circulo-saude">
+          <img src="../pages/icones/saudeicone.svg" alt="Ícone de saúde" />
+        </div>
+        <div class="texto-servico">Saúde, bem-estar e fitness</div>
+      </div>
+    
+      <div class="quadrado"></div>
+      <div class="quadrado"></div>
+    </div>
+
+    <div class="areas-mais-procurados">Mais procurados</div>
+    <div class="quadrados-container-mais-procurados">
+      <div class="quadrado-mais-procurados"></div>
+     
+      
+    </div>
+    <div class="areas-profissionais">Sugestões de Profissionais</div>
+    <div class="quadrados-container-profissionais">
+      
+        <div class="quadrado-profissionais" id="quadrado-profissionais-saude">
+          <a href="perfil-profissional.html">
+            <div class="nome-profissao">Cirurgião-Dentista</div>
+            <div class="nome-profissional">Dr. Roberto Cabrini</div>
+            <div class="imagem-profissional"></div> <!-- A imagem será aqui -->
+          </a>
+        </div> 
+        
+      </div>
+    </div>
+
+    <div class="areas-agendamento">Agendamentos recentes</div>
+    <div class="quadrados-agendamento">
+      <div class="quadrado-agendamento"></div>
+      <div class="quadrado-agendamento"></div>
+      
+    </div>
+
+    <div class="areas-promocoes">Promoções</div>
+<div class="quadrados-promocoes">
+    <div class="quadrado-promocoes">
+        <img src="imagens/banner-horizontal.jpg" alt="Promoção" class="imagem-promocao">
+    </div>
+</div>
+
+      
+    </div>
+    
+    </div>
+   <!-- Menu lateral -->
+<!-- Menu lateral -->
+<!-- Menu lateral -->
+<div class="menu-lateral" id="menuLateral">
+  <!-- Parte superior com foto e dados do usuário -->
+  <div class="usuario-info">
+    <a href="perfil.html">
+    <div class="foto-perfil" id="fotoPerfil"></div> <!-- Foto de perfil circular -->
+    <div class="dados">
+      <div class="nome" id="nomeMenuLateral">Nome do Usuário</div> <!-- Nome do usuário no menu lateral -->
+      <div class="email" id="emailUsuario">usuario@email.com</div> <!-- Email do usuário -->
+    </a>
+    </div>
+  </div>
+
+  <!-- Opções do menu lateral -->
+  <div class="menu-opcoes">
+    <div class="menu-item">
+      <div class="icone-menu" id="iconeInicio" ><a href="teste-2.html"></div>
+      <span class="texto-menu">Início</span></a>
+    </div>
+    <div class="menu-item">
+      <div class="icone-menu" id="iconeBuscarProfissionais"></div>
+      <span class="texto-menu">Buscar Profissionais</span>
+    </div>
+    <div class="menu-item">
+      <div class="icone-menu" id="iconeServicos"></div>
+      <span class="texto-menu">Serviços</span>
+    </div>
+    <div class="menu-item">
+      <div class="icone-menu" id="iconeFavoritos"></div>
+      <span class="texto-menu">Favoritos</span>
+    </div>
+    <div class="menu-item">
+      <div class="icone-menu" id="iconeConsultas"></div>
+      <span class="texto-menu">Minhas Consultas/Agendamentos</span>
+    </div>
+    <div class="menu-item">
+      <div class="icone-menu" id="iconeMensagens"></div>
+      <span class="texto-menu">Mensagens</span>
+    </div>
+    <div class="menu-item">
+      <div class="icone-menu" id="iconeConfiguracoes"></div>
+      <span class="texto-menu">Configurações</span>
+    </div>
+    <div class="menu-item">
+      <div class="icone-menu" id="iconeSuporte"></div>
+      <span class="texto-menu">Suporte</span>
+    </div>
+  </div>
+</div>
+
+      <!-- Aqui você pode adicionar mais itens do menu -->
+    </div>
+
+    <!-- Fundo escuro -->
+    <div class="fundo-escuro" id="fundoEscuro"></div>
+
+    <script>
+   document.addEventListener("DOMContentLoaded", () => {
+  const nomeSaudacaoElement = document.getElementById("nomeSaudacao"); // Elemento onde o nome será exibido na saudação
+  const nomeMenuLateralElement = document.getElementById("nomeMenuLateral"); // Elemento onde o nome será exibido no menu lateral
+  const emailUsuarioElement = document.getElementById("emailUsuario"); // Elemento onde o e-mail será exibido
+  const fotoPerfilElement = document.getElementById("fotoPerfil"); // Elemento onde a foto de perfil será exibida
+
+// Função para buscar o nome do usuário no backend
+async function fetchUserName() {
+    try {
+      const userEmail = localStorage.getItem("userEmail"); // Pega o email armazenado no localStorage
+      if (!userEmail) {
+        console.error("Usuário não encontrado no localStorage!");
+        return;
+      }
+
+      // Fazer a requisição para pegar o nome do usuário
+      const response = await fetch(
+        `https://backen-neocliq.onrender.com/profile?email=${encodeURIComponent(
+          userEmail
+        )}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        console.error("Erro ao buscar perfil do usuário:", response.statusText);
+        return;
+      }
+
+      // Parse do JSON retornado do backend
+      const data = await response.json();
+      const nomeUsuario = data.name || ""; // Se não encontrar nome, exibe "Usuário"
+
+      // Atualiza o texto da logo com o nome do usuário, precedido por "Olá,"
+      nomeSaudacaoElement.textContent = ` ${nomeUsuario}`;
+      nomeMenuLateralElement.textContent = ` ${nomeUsuario}`;
+      emailUsuarioElement.textContent = ` ${userEmail}`;
+    } catch (error) {
+      console.error("Erro ao buscar o nome do usuário:", error);
+    }
+  }
+
+  // Aguarda 5 segundos antes de chamar a função para buscar o nome do usuário
+  setTimeout(() => {
+    fetchUserName(); // Atualiza o nome do usuário após 5 segundos
+  },); // 5000 milissegundos = 5 segundos
+});
+
+  // Função para definir a saudação com base no horário
+  function definirSaudacao() {
+    const saudacaoElement = document.getElementById("saudacao-horario");
+    const horaAtual = new Date().getHours();
+
+    if (horaAtual >= 5 && horaAtual < 12) {
+      saudacaoElement.textContent = "Bom dia!";
+    } else if (horaAtual >= 12 && horaAtual < 18) {
+      saudacaoElement.textContent = "Boa tarde!";
+    } else {
+      saudacaoElement.textContent = "Boa noite!";
+    }
+  }
+
+  // Chama a função de saudação baseada no horário
+  definirSaudacao();
+
+  // Função para abrir o menu lateral
+  function abrirMenu() {
+    document.getElementById("menuLateral").classList.add("open");
+    document.getElementById("fundoEscuro").classList.add("show");
+  }
+
+  // Função para fechar o menu lateral
+  function fecharMenu() {
+    document.getElementById("menuLateral").classList.remove("open");
+    document.getElementById("fundoEscuro").classList.remove("show");
+  }
+
+  // Adiciona o evento de clique no ícone esquerdo para abrir o menu
+  document.querySelector(".icone-esquerdo").addEventListener("click", abrirMenu);
+
+  // Adiciona o evento de clique no fundo escuro para fechar o menu
+  document.getElementById("fundoEscuro").addEventListener("click", fecharMenu);
+
+    </script>
+  </body>
+</html>

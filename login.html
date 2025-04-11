@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css" />
+
+    <!-- Lógica de login no front-end -->
+    <script type="module" src="login.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img src="../pages/imagens/logo.png" alt="Logo" />
+      </div>
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Digite seu email"
+            required />
+        </div>
+
+        <div class="input-group">
+          <label for="password">Senha</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Digite sua senha"
+            required />
+        </div>
+
+        <button type="submit">Entrar</button>
+      </form>
+
+      <div class="links">
+        <p>Não tem uma conta? <a href="cadastre-se.html">Cadastre-se</a></p>
+      </div>
+    </div>
+  </body>
+</html>

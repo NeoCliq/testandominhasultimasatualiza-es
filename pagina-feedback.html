@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback</title>
+    <style>
+      /* Define o fundo cinza para a página */
+      body {
+        background-color: #f0f0f0;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Estilo do retângulo branco no topo */
+      .header {
+        background-color: #ffffff;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      /* Estilo do título "Feedback" */
+      .header h1 {
+        color: #007bff;
+        margin: 0;
+        font-size: 24px;
+      }
+      .question {
+        font-size: 25 px;
+      }
+      /* Estilo para a seta de voltar */
+      .back-button {
+        font-size: 24px;
+        cursor: pointer;
+        color: #007bff;
+      }
+
+      /* Estilo para o bloco de conteúdo entre o topo e o rodapé */
+      .content {
+        padding: 20px;
+      }
+
+      /* Estilo para o bloco branco na parte inferior */
+      .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 20px;
+        text-align: center;
+      }
+
+      /* Estilo para o botão "Avaliar" */
+      .btn-avaliar {
+        background-color: #d3d3d3; /* Cor inicial cinza */
+        color: white;
+        font-size: 16px;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+
+      /* Adiciona um efeito de hover no botão "Avaliar" */
+      .btn-avaliar:hover {
+        background-color: #b0b0b0;
+      }
+
+      /* Estilo para as estrelas */
+      .stars {
+        display: flex;
+        justify-content: space-between;
+        width: 80%; /* 80% da largura da tela */
+        margin-top: 20px;
+      }
+
+      .star {
+        font-size: 50px; /* Aumentando o tamanho da estrela para 50px */
+        cursor: pointer;
+        color: #d3d3d3; /* Cor inicial das estrelas */
+        transition: color 0.2s ease;
+      }
+
+      /* Quando uma estrela for clicada, ela muda para azul */
+      .star.selected {
+        color: #007bff; /* Cor azul */
+      }
+
+      /* Estilo para a linha de separação */
+      .separator {
+        border-top: 2px solid #d3d3d3;
+        margin-top: 20px;
+      }
+
+      /* Estilo para os botões de feedback em grade */
+      .feedback-buttons {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fill,
+          minmax(120px, 1fr)
+        ); /* Grade responsiva */
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .feedback-button {
+        padding: 10px 15px;
+        font-size: 12px; /* Tamanho da fonte reduzido */
+        background-color: #d3d3d3; /* Cor cinza inicial */
+        color: white;
+        border: none;
+        border-radius: 20px; /* Bordas arredondadas */
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.2s ease; /* Efeito suave ao clicar */
+      }
+
+      /* Adiciona efeito de hover nos botões */
+      .feedback-button:hover {
+        background-color: #b0b0b0;
+      }
+
+      /* Estilos quando o botão for selecionado (clicado) */
+      .feedback-button.selected {
+        background-color: #007bff; /* Cor azul após clicar */
+      }
+
+      /* Estilos para botões de tamanhos variados */
+      .button-small {
+        font-size: 12px;
+        padding: 8px 16px;
+      }
+
+      .button-medium {
+        font-size: 14px;
+        padding: 10px 15px;
+      }
+
+      .button-large {
+        font-size: 16px;
+        padding: 12px 20px;
+      }
+
+      /* Estilo para a caixa de texto de opinião */
+      .opinion-box {
+        width: 95%;
+        height: 90px;
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #d3d3d3;
+        font-size: 14px;
+        resize: vertical; /* Permite redimensionar a caixa verticalmente */
+      }
+
+      /* Estilo para a tela de agradecimento */
+      /* Estilo para a tela de agradecimento */
+      .thank-you-screen {
+        display: none; /* Utiliza flexbox para centralizar */
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 123, 255, 0.9); /* Azul com transparência */
+        color: white;
+        font-size: 24px;
+        z-index: 1000;
+        text-align: center;
+        flex-direction: column; /* Alinha o conteúdo na direção vertical */
+      }
+
+      .thank-you-screen img {
+        width: 100px; /* Tamanho do ícone de agradecimento */
+        margin-bottom: 20px; /* Espaçamento entre o ícone e a mensagem */
+      }
+
+      .thank-you-screen div {
+        font-size: 24px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="back-button">
+        <img src="voltar-seta.svg" alt="Favorito" id="seta-feedback" />
+      </div>
+
+      <h1>Feedback</h1>
+
+      <!-- Ícone de seta -->
+    </div>
+
+    <div class="content">
+      <div class="question">Avalie sua experiência!</div>
+
+      <!-- Estrelas para avaliação -->
+      <div class="stars">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+
+      <!-- Linha separadora -->
+      <div class="separator"></div>
+
+      <!-- Botões de feedback -->
+      <div class="feedback-buttons">
+        <button class="feedback-button button-small">Transparente</button>
+        <button class="feedback-button button-medium">Educado</button>
+        <button class="feedback-button button-large">
+          Não explicou a situação corretamente
+        </button>
+        <button class="feedback-button button-small">Atencioso</button>
+        <button class="feedback-button button-medium">Ágil</button>
+        <button class="feedback-button button-large">
+          Demorou para responder
+        </button>
+        <button class="feedback-button button-small">
+          Clareza nas informações
+        </button>
+        <button class="feedback-button button-medium">Profissionalismo</button>
+      </div>
+
+      <!-- Caixa de texto para opinião -->
+      <textarea
+        class="opinion-box"
+        placeholder="Deixe sua opinião (opcional)"></textarea>
+    </div>
+
+    <div class="footer">
+      <button class="btn-avaliar" id="btn-avaliar">Avaliar</button>
+    </div>
+
+    <!-- Tela de agradecimento -->
+    <div class="thank-you-screen" id="thank-you-screen">
+      <img
+        src="../pages/Icones/obrigado-avaliacao.svg"
+        alt="Ícone de Agradecimento" />
+      Agradecemos pelo <br />
+      seu feedback!
+    </div>
+
+    <script>
+      // Adiciona funcionalidade ao botão de voltar (seta)
+      document.getElementById("seta-feedback").onclick = function () {
+        window.history.back();
+      };
+
+      // Função para gerenciar o clique nas estrelas
+      const stars = document.querySelectorAll(".star");
+      stars.forEach(star => {
+        star.addEventListener("click", () => {
+          // Remove a classe 'selected' de todas as estrelas
+          stars.forEach(s => s.classList.remove("selected"));
+
+          // Marca a estrela clicada como 'selected'
+          star.classList.add("selected");
+
+          // Marca todas as estrelas anteriores também como 'selected'
+          let previousStar = star.previousElementSibling;
+          while (previousStar) {
+            previousStar.classList.add("selected");
+            previousStar = previousStar.previousElementSibling;
+          }
+
+          // Muda a cor do botão "Avaliar" para azul quando uma estrela for clicada
+          document.getElementById("btn-avaliar").style.backgroundColor =
+            "#007bff";
+        });
+      });
+
+      // Função para gerenciar o clique nos botões de feedback
+      const feedbackButtons = document.querySelectorAll(".feedback-button");
+      feedbackButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          // Marca o botão clicado como 'selected'
+          button.classList.toggle("selected");
+
+          // Muda a cor do botão "Avaliar" para azul se qualquer botão for selecionado
+          const anyButtonSelected = Array.from(feedbackButtons).some(b =>
+            b.classList.contains("selected")
+          );
+          if (anyButtonSelected) {
+            document.getElementById("btn-avaliar").style.backgroundColor =
+              "#007bff";
+          } else {
+            document.getElementById("btn-avaliar").style.backgroundColor =
+              "#d3d3d3";
+          }
+        });
+      });
+
+      // Função para mostrar a tela de agradecimento
+      // Quando o botão "Avaliar" for clicado e estiver ativo
+      // Quando o botão "Avaliar" for clicado e estiver ativo
+      document
+        .getElementById("btn-avaliar")
+        .addEventListener("click", function () {
+          if (this.style.backgroundColor === "rgb(0, 123, 255)") {
+            // Verifica se o botão está azul
+            // Exibe a tela de agradecimento
+            document.querySelector(".thank-you-screen").style.display = "flex";
+
+            // Aguarda 3 segundos para esconder a tela de agradecimento e voltar para a página anterior
+            setTimeout(() => {
+              // Esconde a tela de agradecimento
+              document.querySelector(".thank-you-screen").style.display =
+                "none";
+
+              // Volta para a tela anterior
+              window.history.back(); // Simula o "voltar" para a página anterior
+            }, 1000); // 3000 milissegundos = 3 segundos
+          }
+        });
+    </script>
+  </body>
+</html>
